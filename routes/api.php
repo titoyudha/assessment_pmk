@@ -1,7 +1,10 @@
 <?php
 
-
+use App\Http\Controllers\OAuthController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PostController;
+
 use Illuminate\Http\Request;
 
 /*
@@ -15,26 +18,17 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->group(function () {
-    Route::post('logout', 'OAuthController@logout');
+Route::middleware('auth:api')->post('logout', [OAuthController::class, 'logout']);
+
 
     // User routes
-    Route::get('users', 'UserController@index');
-    Route::post('users', 'UserController@store');
-    Route::get('users/{id}', 'UserController@show');
-    Route::put('users/{id}', 'UserController@update');
-    Route::delete('users/{id}', 'UserController@destroy');
+Route::resource('users', UserController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
 
-    // Post routes
-    Route::get('posts', 'PostController@index');
-    Route::post('posts', 'PostController@store');
-    Route::get('posts/{id}', 'PostController@show');
-    Route::put('posts/{id}', 'PostController@update');
-    Route::delete('posts/{id}', 'PostController@destroy');
-});
+// Post routes
+Route::resource('posts', PostController::class)->only(['index', 'store', 'show', 'update', 'destroy']);
 
 // Non-authenticated routes
-Route::post('login', 'OAuthController@login');
+Route::post('login', [OAuthController::class, 'login']);
 
 
 
