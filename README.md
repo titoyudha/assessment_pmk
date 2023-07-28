@@ -6,4 +6,4 @@
 
 ## For the documentation for the API endpoints, including authentication requirements and uniform  response formats , you can visit [this swagger](https://github.com/titoyudha/assessment_pmk/blob/main/swagger.yaml)
 
-## For the deployment
+## For the deployment on aws i dont have any credit card 
