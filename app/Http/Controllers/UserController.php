@@ -44,7 +44,6 @@ class UserController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $id,
-            'password' => 'required|string|min:8',
         ]);
 
         $user = User::find($id);
