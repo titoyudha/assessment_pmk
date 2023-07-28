@@ -17,17 +17,6 @@ class PostController extends Controller
         return ApiResponse::success($posts);
     }
 
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'content' => 'required|string',
-            'user_id' => 'required|exists:users,id',
-        ]);
-
-        $post = Post::create($validatedData);
-        return ApiResponse::success($post, 'Post created successfully', 201);
-    }
 
     public function show($id)
     {
